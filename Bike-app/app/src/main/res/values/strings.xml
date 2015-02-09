@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">Bike-app</string>
+    <string name="version">0.1</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
