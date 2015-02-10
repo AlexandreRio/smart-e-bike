@@ -38,8 +38,13 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void getFavorisInterface(View view){
+    public void launchFavorisActivity(View view){
         Intent intent = new Intent(this, Favoris.class);
+        startActivity(intent);
+    }
+
+    public void launchNavigationActivity(View view){
+        Intent intent = new Intent(this, NavigationActivity.class);
         startActivity(intent);
     }
 }
