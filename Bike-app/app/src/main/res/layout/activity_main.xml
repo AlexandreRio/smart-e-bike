@@ -58,13 +58,17 @@
             <Button
                 android:height="150dp"
                 android:width="150dp"
-                android:layout_column="0">
+                android:layout_column="0"
+                android:text="Carte"
+                android:onClick="getMapInterface">
             </Button>
 
             <Button
                 android:height="150dp"
                 android:width="150dp"
-                android:layout_column="1">
+                android:layout_column="1"
+                android:text="Favoris"
+                android:onClick="getFavorisInterface">
             </Button>
 
 
@@ -83,13 +87,17 @@
             <Button
                 android:height="150dp"
                 android:width="150dp"
-                android:layout_column="0">
+                android:layout_column="0"
+                android:text="Historique"
+                android:onClick="getHistoricInterface">
             </Button>
 
             <Button
                 android:height="150dp"
                 android:width="150dp"
-                android:layout_column="1">
+                android:layout_column="1"
+                android:text="Réglages"
+                android:onClick="getSettingsInterface">
             </Button>
         </GridLayout>
 
