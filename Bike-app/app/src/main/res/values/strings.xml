@@ -9,6 +9,9 @@
     <string name="spinner_prompt">Liste des favoris</string>
     <string name="title_activity_display_favoris_interface">DisplayFavorisInterface</string>
 
+    <string name="navigationVitesse">Vitesse</string>
+    <string name="navigationTemps">Temps Restant</string>
+    <string name="navigationDistance">Distance Restante</string>
 
     <string-array name="contenus_favoris">
         <item>Maison</item>
