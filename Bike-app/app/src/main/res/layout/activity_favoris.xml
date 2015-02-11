@@ -27,7 +27,8 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:prompt="@string/spinner_prompt"/>
+        android:prompt="@string/spinner_prompt"
+        android:entries="@array/contenus_favoris"/>
 
     <TableLayout
         android:layout_width="match_parent"
