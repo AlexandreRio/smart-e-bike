@@ -19,20 +19,47 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Favoris"
-            android:textSize="30dp"
+            android:textSize="25pt"
             android:gravity="center"/>
 
         </LinearLayout>
 
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:prompt="@string/spinner_prompt"
-        android:entries="@array/contenus_favoris"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:prompt="@string/spinner_prompt"
+                android:entries="@array/contenus_favoris"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right">
+
+            <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="+"
+            android:textSize="15pt"
+            />
+        </LinearLayout>
+
+
+     </LinearLayout>
+
+
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="390dp"
+        android:layout_height="200pt"
         android:background="#ffffff"
         android:shrinkColumns="*"
         android:stretchColumns="*">
