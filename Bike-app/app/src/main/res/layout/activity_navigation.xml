@@ -1,71 +1,69 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
-    android:minWidth="90dp"
-    android:minHeight="30dp">
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentBottom="true"
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="match_parent" android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:weightSum="1">
+        android:minHeight="30dp" android:minWidth="90dp"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:weightSum="1"
+        tools:context=".MainActivity">
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="80dp">
+            android:layout_height="80dp"
+            android:orientation="horizontal">
 
             <Button
+                android:id="@+id/navigationLogo"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:text="n"
-                android:id="@+id/navigationLogo" />
+                android:text="n" />
             <Button
+                android:id="@+id/navigationBatterie"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:text="U"
-                android:id="@+id/navigationBatterie" />
+                android:text="U" />
             <Button
+                android:id="@+id/navigationMenu"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:text="Menu"
-                android:id="@+id/navigationMenu" />
+                android:text="Menu" />
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:text="U"
                 android:id="@+id/navigationVerrou"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="U"
                 android:visibility="visible" />
             <Button
+                android:id="@+id/navigationReglage"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:text="U"
-                android:id="@+id/navigationReglage" />
+                android:text="U" />
             <Button
+                android:id="@+id/navigationPlus"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:text="U"
-                android:id="@+id/navigationPlus"
                 android:visibility="visible" />
         </LinearLayout>
 
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/map"
-            android:layout_width="match_parent"
-            android:layout_height="387dp"
             android:name="com.google.android.gms.maps.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1" />
 
         <LinearLayout
@@ -74,33 +72,32 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/navigationFleche"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:text="n"
-                android:id="@+id/navigationFleche" />
+                android:text="n" />
             <Button
+                android:id="@+id/navigationVitesse"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:text="@string/navigationVitesse"
-                android:id="@+id/navigationVitesse" />
+                android:text="@string/navigationVitesse" />
             <Button
+                android:id="@+id/navigationTemps"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:text="@string/navigationTemps"
-                android:id="@+id/navigationTemps" />
+                android:text="@string/navigationTemps" />
             <Button
+                android:id="@+id/navigationDistance"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:text="@string/navigationDistance"
-                android:id="@+id/navigationDistance"
                 android:visibility="visible" />
         </LinearLayout>
 
 
     </LinearLayout>
 
-</RelativeLayout>
