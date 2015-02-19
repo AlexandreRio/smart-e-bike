@@ -12,14 +12,14 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="57dp"
             android:layout_height="match_parent"
-            android:src="@drawable/logodaeop"/>
+            android:src="@drawable/logo"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Favoris"
-            android:textSize="25pt"
+            android:textSize="20pt"
             android:gravity="center"/>
 
         </LinearLayout>
@@ -40,15 +40,15 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="right">
 
             <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="+"
-            android:textSize="15pt"
+            android:text="Nouveau"
+            android:textSize="6pt"
+            android:gravity="center"
             />
         </LinearLayout>
 
@@ -59,7 +59,7 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="200pt"
+        android:layout_height="match_parent"
         android:background="#ffffff"
         android:shrinkColumns="*"
         android:stretchColumns="*">
@@ -68,16 +68,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:text="Ligne 1"/>
+            <TextView android:text="Ligne 1"/>
 
         </TableRow>
 
         <TableRow
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <TextView android:text="Ligne2"/>
-            </TableRow>
+
+        </TableRow>
 
 
 
