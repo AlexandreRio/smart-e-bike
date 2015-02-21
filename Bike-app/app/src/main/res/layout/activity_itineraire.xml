@@ -1,36 +1,87 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="#ffffff"
-    tools:context="al.esir.bike_app.Itineraire">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="al.esir.bike_app.favoris"
+    android:orientation="vertical">
 
-    <!-- The primary full-screen view. This can be replaced with whatever view
-         is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc. -->
 
-    <!-- This FrameLayout insets its children based on system windows using
-         android:fitsSystemWindows. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <FrameLayout
-        android:layout_width="fill_parent"
-        android:layout_height="225pt"
-        android:layout_gravity="center_horizontal|bottom">
-
-        <ListView
-            android:layout_width="wrap_content"
+        <ImageView
+            android:layout_width="57dp"
             android:layout_height="match_parent"
-            android:id="@+id/listView"
-            android:layout_gravity="center" />
-    </FrameLayout>
+            android:src="@drawable/logo"/>
 
-    <EditText
-        android:layout_width="209dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:layout_gravity="right|top" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Itineraire"
+            android:textSize="18pt"
+            android:gravity="center"/>
 
-    <SearchView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/searchView"
-        android:layout_gravity="center_horizontal|top" />
-</FrameLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:orientation="horizontal">
+        <ExpandableListView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/expandableListView"
+            android:entries="@array/contenus_itineraire"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:weightSum="1">
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:shrinkColumns="*"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView android:text="Ligne 1"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView android:text="Ligne2"/>
+
+        </TableRow>
+
+
+
+
+    </TableLayout>
+
+
+
+
+</LinearLayout>

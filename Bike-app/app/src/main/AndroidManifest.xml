@@ -57,6 +57,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="al.esir.bike_app.MainActivity" />
         </activity>
+
+        <activity
+            android:name=".Itineraire"
+            android:label="@string/title_activity_itineraire"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="al.esir.bike_app.MainActivity" />
+        </activity>
+
     </application>
 
 </manifest>

@@ -12,6 +12,7 @@
     <string name="navigationTemps">Temps Restant</string>
     <string name="navigationDistance">Distance Restante</string>
     <string name="title_activity_historique">Historique</string>
+    <string name="title_activity_itineraire">Itineraire</string>
 
 
     <string-array name="contenus_favoris">
@@ -24,6 +25,9 @@
         <item>"Aujourd'hui"</item>
         <item>"Cette semaine"</item>
         <item>"Ce mois-ci"</item>
+    </string-array>
+    <string-array name="contenus_itineraire">
+        <item>"liste favoris"</item>
     </string-array>
 
 
