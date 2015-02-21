@@ -49,6 +49,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="al.esir.bike_app.MainActivity" />
         </activity>
+        <activity
+            android:name=".Historique"
+            android:label="@string/title_activity_historique"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="al.esir.bike_app.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

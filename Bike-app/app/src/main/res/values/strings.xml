@@ -8,15 +8,23 @@
     <string name="title_activity_navigation">NavigationActivity</string>
     <string name="spinner_prompt">Liste des favoris</string>
     <string name="title_activity_display_favoris_interface">DisplayFavorisInterface</string>
-
     <string name="navigationVitesse">Vitesse</string>
     <string name="navigationTemps">Temps Restant</string>
     <string name="navigationDistance">Distance Restante</string>
+    <string name="title_activity_historique">Historique</string>
+
 
     <string-array name="contenus_favoris">
-        <item>Maison</item>
-        <item>Travail</item>
-        <item>Commerces</item>
-        <item>Autres</item>
+        <item>"Maison"</item>
+        <item>"Travail"</item>
+        <item>"Commerces"</item>
+        <item>"Autres"</item>
     </string-array>
+    <string-array name="contenus_historique">
+        <item>"Aujourd'hui"</item>
+        <item>"Cette semaine"</item>
+        <item>"Ce mois-ci"</item>
+    </string-array>
+
+
 </resources>

@@ -89,7 +89,7 @@
                 android:width="150dp"
                 android:layout_column="0"
                 android:text="Historique"
-                android:onClick="launchHistoricActivity">
+                android:onClick="launchHistoriqueActivity">
             </Button>
 
             <Button
