@@ -42,10 +42,20 @@
             android:label="@string/title_activity_navigation" >
         </activity>
         <activity
-            android:name=".Itineraire"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_itineraire"
-            android:theme="@style/FullscreenTheme" >
+            android:name=".Favoris"
+            android:label="Favoris"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="al.esir.bike_app.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Historique"
+            android:label="@string/title_activity_historique"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="al.esir.bike_app.MainActivity" />
         </activity>
     </application>
 

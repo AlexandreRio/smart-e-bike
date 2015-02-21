@@ -18,11 +18,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Favoris"
+            android:text="Historique"
             android:textSize="20pt"
             android:gravity="center"/>
 
-        </LinearLayout>
+    </LinearLayout>
 
 
 
@@ -32,28 +32,29 @@
         android:orientation="horizontal">
 
 
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:prompt="@string/spinner_prompt"
-                android:entries="@array/contenus_favoris"/>
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:prompt="@string/spinner_prompt"
+            android:entries="@array/contenus_historique"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right">
+            android:gravity="right"
+            android:weightSum="1">
 
-            <Button
+            <SearchView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nouveau"
-                android:textSize="6pt"
-                android:gravity="center"
-                />
+                android:layout_height="match_parent"
+                android:id="@+id/searchView"
+                android:queryHint="Rechercher"
+             />
+
         </LinearLayout>
 
 
-     </LinearLayout>
+    </LinearLayout>
 
 
 

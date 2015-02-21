@@ -60,7 +60,7 @@
                 android:width="150dp"
                 android:layout_column="0"
                 android:text="Carte"
-                android:onClick="getMapInterface">
+                android:onClick="launchNavigationActivity">
             </Button>
 
             <Button
@@ -68,7 +68,7 @@
                 android:width="150dp"
                 android:layout_column="1"
                 android:text="Favoris"
-                android:onClick="getFavorisInterface">
+                android:onClick="launchFavorisActivity">
             </Button>
 
 
@@ -89,7 +89,7 @@
                 android:width="150dp"
                 android:layout_column="0"
                 android:text="Historique"
-                android:onClick="getHistoricInterface">
+                android:onClick="launchHistoriqueActivity">
             </Button>
 
             <Button
@@ -97,7 +97,7 @@
                 android:width="150dp"
                 android:layout_column="1"
                 android:text="Réglages"
-                android:onClick="getSettingsInterface">
+                android:onClick="launchSettingsActivity">
             </Button>
         </GridLayout>
 
