@@ -24,6 +24,9 @@ public class Itineraire extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_itineraire);
+        /* le setadapter pour la extendlist va être mis à jour la
+            attendre d'avoir des données en forme pour pouvoir adpater
+        */
     }
 
 
