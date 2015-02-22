@@ -14,6 +14,18 @@
     <string name="title_activity_historique">Historique</string>
     <string name="title_activity_itineraire">Itineraire</string>
 
+    <string name="title_row1_historique">Activité</string>
+    <string name="title_row2_historique">Dernière fois</string>
+    <string name="title_row3_historique">Lieu</string>
+    <string name="data1_row1_historique">Commerce</string>
+    <string name="data2_row2_historique">12 février</string>
+    <string name="data3_row3_historique">12 rue de fougères</string>
+    <string name="data4_row1_historique">Restaurant</string>
+    <string name="data5_row2_historique">18 février</string>
+    <string name="data6_row3_historique">28 avenue de rochester</string>
+    <string name="data7_row1_historique">Assurance</string>
+    <string name="data8_row2_historique">22 mars</string>
+    <string name="data9_row3_historique">3 allée de maurepas</string>
 
     <string-array name="contenus_favoris">
         <item>"Maison"</item>
