@@ -1,6 +1,11 @@
 package al.esir.bike_app;
 
 import android.app.Activity;
+import android.content.Context;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -11,7 +16,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
-public class NavigationActivity extends Activity implements OnMapReadyCallback {
+public class NavigationActivity extends Activity implements OnMapReadyCallback, LocationListener {
+
+    private LocationManager locationManager;
+    private String provider;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,15 +33,50 @@ public class NavigationActivity extends Activity implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap map) {
-        LatLng sydney = new LatLng(-33.867, 151.206);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-        map.setMyLocationEnabled(true);
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
+        Criteria criteria = new Criteria();
+        provider = locationManager.getBestProvider(criteria, false);
 
-        map.addMarker(new MarkerOptions()
-                .title("Sydney")
-                .snippet("The most populous city in Australia.")
-                .position(sydney));
+        locationManager.requestLocationUpdates(provider, 400, 1, this);
+        Location location = locationManager.getLastKnownLocation(provider);
+
+
+
+        if (location != null) {
+            System.out.println("Provider " + provider + " has been selected.");
+            LatLng here = new LatLng(location.getLatitude(), location.getLongitude());
+
+            map.setMyLocationEnabled(true);
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(here, 13));
+            map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+            map.addMarker(new MarkerOptions()
+                    .title("Here")
+                    .snippet("This is where I am.")
+                    .position(here));
+        } else {
+           System.out.println("location not available");
+        }
+
     }
 
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
 }
