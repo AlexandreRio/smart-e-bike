@@ -27,6 +27,15 @@
     <string name="data8_row2_historique">22 mars</string>
     <string name="data9_row3_historique">3 allée de maurepas</string>
 
+    <string name="title_row1_favoris">Activité</string>
+    <string name="title_row2_favoris">Lieu</string>
+    <string name="data1_row1_favoris">Commerce</string>
+    <string name="data2_row2_favoris">12 rue de fougères</string>
+    <string name="data3_row1_favoris">Restaurant</string>
+    <string name="data4_row2_favoris">28 avenue de rochester</string>
+    <string name="data5_row1_favoris">Assurance</string>
+    <string name="data6_row2_favoris">3 allée de maurepas</string>
+
     <string-array name="contenus_favoris">
         <item>"Maison"</item>
         <item>"Travail"</item>
