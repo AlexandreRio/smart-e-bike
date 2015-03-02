@@ -8,9 +8,9 @@
     <string name="title_activity_navigation">NavigationActivity</string>
     <string name="spinner_prompt">Liste des favoris</string>
     <string name="title_activity_display_favoris_interface">DisplayFavorisInterface</string>
-    <string name="navigationVitesse">Vitesse</string>
-    <string name="navigationTemps">Temps Restant</string>
-    <string name="navigationDistance">Distance Restante</string>
+    <string name="navigationVitesse">Vitesse : 23km/h</string>
+    <string name="navigationTemps">Temps Restant : 10min20s</string>
+    <string name="navigationDistance">Distance Restante : 12km</string>
     <string name="title_activity_historique">Historique</string>
     <string name="title_activity_itineraire">Itineraire</string>
 
