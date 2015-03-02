@@ -48,7 +48,7 @@ public class NavigationActivity extends Activity implements OnMapReadyCallback, 
             LatLng here = new LatLng(location.getLatitude(), location.getLongitude());
 
             map.setMyLocationEnabled(true);
-            map.moveCamera(CameraUpdateFactory.newLatLngZoom(here, 13));
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(here, 18));
             map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
             map.addMarker(new MarkerOptions()
                     .title("Here")
