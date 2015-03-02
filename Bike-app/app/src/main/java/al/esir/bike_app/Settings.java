@@ -1,25 +1,24 @@
 package al.esir.bike_app;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 
-public class MainActivity extends ActionBarActivity {
-// main
+public class Settings extends ActionBarActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_settings);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_settings, menu);
         return true;
     }
 
@@ -36,25 +35,5 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void launchFavorisActivity(View view){
-        Intent intent = new Intent(this, Favoris.class);
-        startActivity(intent);
-    }
-
-    public void launchNavigationActivity(View view){
-        Intent intent = new Intent(this, NavigationActivity.class);
-        startActivity(intent);
-    }
-
-    public void launchHistoriqueActivity(View view){
-        Intent intent = new Intent(this, Historique.class);
-        startActivity(intent);
-    }
-
-    public void launchSettingsActivity(View view){
-        Intent intent = new Intent(this, Settings.class);
-        startActivity(intent);
     }
 }
