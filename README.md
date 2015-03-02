@@ -23,4 +23,4 @@ Réalisée à l'aide d'[Android Studio](http://developer.android.com/sdk/install
 ##Émulation
 Pour permettre la récupération de la position courante GPS depuis l'émulateur il faut la lui spécifier
 > telnet localhost 5554
-geo fix -1.659622 48.116982
+> geo fix -1.659622 48.116982

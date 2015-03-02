@@ -19,12 +19,12 @@
             android:layout_height="80dp"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/navigationLogo"
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:text="n" />
+                android:src="@drawable/logo"/>
+
             <Button
                 android:id="@+id/navigationBatterie"
                 android:layout_width="match_parent"
@@ -36,7 +36,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:text="Menu" />
+                android:text="Menu"
+                android:gravity="center" />
             <Button
                 android:id="@+id/navigationVerrou"
                 android:layout_width="match_parent"
@@ -78,25 +79,38 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:text="n" />
-            <Button
-                android:id="@+id/navigationVitesse"
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Vitesse 12km/h"
+                android:id="@+id/textView"
                 android:layout_weight="1"
-                android:text="@string/navigationVitesse" />
-            <Button
+                android:clickable="false"
+                android:focusable="false"
+                android:gravity="center" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/navigationTemps"
                 android:id="@+id/navigationTemps"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:focusable="false"
+                android:gravity="center" />
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:text="@string/navigationTemps" />
-            <Button
-                android:id="@+id/navigationDistance"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/navigationDistance"
-                android:visibility="visible" />
+                android:id="@+id/navigationDistance"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:focusable="false"
+                android:gravity="center" />
         </LinearLayout>
 
 
