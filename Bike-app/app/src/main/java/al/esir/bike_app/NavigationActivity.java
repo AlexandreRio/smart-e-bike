@@ -8,10 +8,12 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -48,7 +50,14 @@ public class NavigationActivity extends Activity implements OnMapReadyCallback, 
             LatLng here = new LatLng(location.getLatitude(), location.getLongitude());
 
             map.setMyLocationEnabled(true);
-            map.moveCamera(CameraUpdateFactory.newLatLngZoom(here, 18));
+            CameraUpdate up = CameraUpdateFactory.newLatLngZoom(here, 17);
+            map.moveCamera(up);
+            CameraPosition.Builder pos = CameraPosition.builder(map.getCameraPosition()).tilt(45);
+            CameraUpdate tilt = CameraUpdateFactory.newCameraPosition(pos.build());
+
+
+            map.moveCamera(tilt);
+
             map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
             map.addMarker(new MarkerOptions()
                     .title("Here")
