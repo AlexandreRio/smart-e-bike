@@ -50,6 +50,7 @@
     <string-array name="contenus_itineraire">
         <item>"liste favoris"</item>
     </string-array>
+    <string name="title_activity_settings">Settings</string>
 
 
 </resources>

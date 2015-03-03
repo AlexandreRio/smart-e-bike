@@ -29,12 +29,14 @@
             android:columnCount="3">
 
             <ImageView
+                android:src="@drawable/logo"
                 android:layout_column="0"
                 android:width="150dp" >
             </ImageView>
 
             <EditText
                 android:layout_column="1"
+                android:hint="Allons-y Alonso !"
                 android:width="150dp">
             </EditText>
 
