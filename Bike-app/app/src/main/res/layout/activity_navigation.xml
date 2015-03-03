@@ -1,62 +1,45 @@
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-        android:layout_height="match_parent" android:layout_alignParentBottom="true"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:minHeight="30dp" android:minWidth="90dp"
+        android:minHeight="30dp"
+        android:minWidth="90dp"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
         android:weightSum="1"
         tools:context=".MainActivity">
 
+
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/navigationLogo"
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:text="n" />
-            <Button
-                android:id="@+id/navigationBatterie"
+                android:layout_height="match_parent"
+                android:layout_weight="40"
+                android:src="@drawable/logo"/>
+
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:text="U" />
-            <Button
-                android:id="@+id/navigationMenu"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_weight="20"
+                android:text="Carte"
+                android:textSize="18pt"
+                android:textAlignment="center"
+                android:gravity="center" />
+
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:text="Menu" />
-            <Button
-                android:id="@+id/navigationVerrou"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:text="U"
-                android:visibility="visible" />
-            <Button
-                android:id="@+id/navigationReglage"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:text="U" />
-            <Button
-                android:id="@+id/navigationPlus"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:text="U"
-                android:visibility="visible" />
+                android:layout_height="match_parent"
+                android:layout_weight="40"
+                android:src="@drawable/logo"
+                android:id="@+id/batterieVelo" />
         </LinearLayout>
 
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
@@ -72,31 +55,45 @@
             android:layout_height="80dp"
             android:orientation="horizontal">
 
-            <Button
+            <ImageView
                 android:id="@+id/navigationFleche"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
+                android:src="@drawable/logo"
                 android:text="n" />
-            <Button
-                android:id="@+id/navigationVitesse"
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Vitesse 12km/h"
+                android:id="@+id/textView"
                 android:layout_weight="1"
-                android:text="@string/navigationVitesse" />
-            <Button
+                android:clickable="false"
+                android:focusable="false"
+                android:gravity="center" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/navigationTemps"
                 android:id="@+id/navigationTemps"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:focusable="false"
+                android:gravity="center" />
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:text="@string/navigationTemps" />
-            <Button
-                android:id="@+id/navigationDistance"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/navigationDistance"
-                android:visibility="visible" />
+                android:id="@+id/navigationDistance"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:focusable="false"
+                android:gravity="center" />
         </LinearLayout>
 
 

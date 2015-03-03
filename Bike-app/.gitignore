@@ -1,5 +1,7 @@
 .gradle
 .idea
+/app
+/Bike-app.iml
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
