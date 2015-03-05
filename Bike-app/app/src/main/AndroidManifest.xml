@@ -76,6 +76,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="al.esir.bike_app.MainActivity" />
         </activity>
+        <activity
+            android:name=".AddFavoris"
+            android:label="@string/title_activity_add_favoris"
+            android:parentActivityName=".Favoris" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="al.esir.bike_app.Favoris" />
+        </activity>
     </application>
 
 </manifest>
