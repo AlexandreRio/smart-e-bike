@@ -8,30 +8,45 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-
 public class AddFavoris extends Activity implements OnClickListener {
 
-    EditText editTextAddFavoris1;
-    EditText editTextAddFavoris2;
-    Button btnOKAddFavoris;
+    private EditText editTextAddFavoris1;   // EditText pour renseigner l'activité
+    private EditText editTextAddFavoris2;   // EditText pour renseigner le lieu
+    private Button btnOKAddFavoris;         // Bouton OK pour valider les données
+    private Button btnAnnulerAddFavoris;    // Bouton Annuler pour annuler l'opération d'ajout
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_favoris);
 
+        // On initialise les différentes éléments de la vue
         editTextAddFavoris1 = (EditText) findViewById(R.id.editTextAddFavoris1);
         editTextAddFavoris2 = (EditText) findViewById(R.id.editTextAddFavoris2);
         btnOKAddFavoris = (Button) findViewById(R.id.btnOKAddFavoris);
+        btnAnnulerAddFavoris = (Button) findViewById(R.id.btnAnnulerAddFavoris);
+        // On applique la méthode onClick au bouton OK et Annuler
         btnOKAddFavoris.setOnClickListener(this);
+        btnAnnulerAddFavoris.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent();
-        String[] tabResult = {editTextAddFavoris1.getText().toString(), editTextAddFavoris2.getText().toString()};
-        intent.putExtra("result", tabResult);
-        setResult(RESULT_OK, intent);
+        // On retourne un résultat différent en fonction du bouton cliqué par l'utilisateur
+        switch(v.getId()){
+            case R.id.btnOKAddFavoris :
+                Intent intent = new Intent();
+                // On crée la table de résultat qui comprendra l'activité et le lieu donné par l'utilisateur
+                String[] tabResult = {editTextAddFavoris1.getText().toString(), editTextAddFavoris2.getText().toString()};
+                intent.putExtra("result", tabResult);
+                // On retourne le résultat avec le code OK
+                setResult(RESULT_OK, intent);
+                break;
+            case R.id.btnAnnulerAddFavoris :
+                // On retourne rien, seulement annuler
+                setResult(RESULT_CANCELED);
+                break;
+        }
         // On met fin à l'activité
         finish();
     }
