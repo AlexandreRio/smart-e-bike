@@ -58,6 +58,7 @@
             android:columnCount="2">
 
             <Button
+                android:drawableBottom="@drawable/Map2"
                 android:height="150dp"
                 android:width="150dp"
                 android:layout_column="0"
@@ -66,6 +67,7 @@
             </Button>
 
             <Button
+                android:drawableBottom="@drawable/Favoris1"
                 android:height="150dp"
                 android:width="150dp"
                 android:layout_column="1"
@@ -87,6 +89,7 @@
             android:columnCount="2">
 
             <Button
+                android:drawableBottom="@drawable/historique"
                 android:height="150dp"
                 android:width="150dp"
                 android:layout_column="0"
@@ -95,6 +98,7 @@
             </Button>
 
             <Button
+                android:drawableBottom="@drawable/reglage"
                 android:height="150dp"
                 android:width="150dp"
                 android:layout_column="1"
