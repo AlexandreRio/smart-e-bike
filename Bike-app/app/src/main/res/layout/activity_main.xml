@@ -58,7 +58,7 @@
             android:columnCount="2">
 
             <Button
-                android:drawableBottom="@drawable/Map2"
+                android:drawableBottom="@drawable/map"
                 android:height="150dp"
                 android:width="150dp"
                 android:layout_column="0"
@@ -67,7 +67,7 @@
             </Button>
 
             <Button
-                android:drawableBottom="@drawable/Favoris1"
+                android:drawableBottom="@drawable/favoris"
                 android:height="150dp"
                 android:width="150dp"
                 android:layout_column="1"
