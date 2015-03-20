@@ -1,0 +1,80 @@
+#include <SoftwareSerial.h>  
+#define RxD 11
+#define TxD 12
+ 
+#define DEBUG_ENABLED  1
+
+int value1 = 1000;
+int value2 = 1000;
+ 
+SoftwareSerial blueToothSerial(RxD,TxD);
+ 
+void setup() 
+{ 
+    pinMode(13, OUTPUT);
+    pinMode(RxD, INPUT);
+    pinMode(TxD, OUTPUT);
+    setupBlueToothConnection();
+ 
+} 
+ 
+void loop() //programme principal
+{ 
+  if(blueToothSerial.read() == 'a')
+  {
+    blueToothSerial.println("Coucou, tu veux voir mon BIP ?");
+    delay(100);
+    blueToothSerial.println(" * bruit assourdissant* BIIIIIP");
+    digitalWrite(13, HIGH);
+    delay (value1);
+    digitalWrite(13, LOW);
+    delay(value2);
+  }
+ 
+} 
+ 
+ 
+ /**
+ *Cette fonction sert a établir la connexion bluetooth avec le telephone AndroidDeCed (a modifier en live)
+ 
+ */
+void setupBlueToothConnection()
+{
+    blueToothSerial.begin(1150); // le BaudRate
+    delay(500);
+    blueToothSerial.print("\r\n+STWMOD=0\r\n"); // selon la doc, c'est correct 
+    blueToothSerial.print("\r\n+STNA=AndroidDeCed\r\n");
+    blueToothSerial.print("\r\n+STAUTO=0\r\n");
+    blueToothSerial.print("\r\n+STOAUT=1\r\n");
+    blueToothSerial.print("\r\n +STPIN=0000\r\n");
+    delay(500); 
+    blueToothSerial.print("\r\n+INQ=1\r\n");
+    delay(500); 
+}
+ 
+//Verification de la reponse
+void Camarche()
+{
+  char tmp;
+  char tmp2;
+  while(1) //boucle qui sera interompue lors d'une connexion
+  {
+    if(blueToothSerial.available())
+    {
+    tmp = blueToothSerial.read();
+    if('O' == tmp)
+    {
+      //Si al connexion a echouée, onattends la nouvelle
+      while(blueToothSerial.available()) 
+      {
+         tmp2 = blueToothSerial.read(); // rebelotte
+         break;
+      }
+      if('K' == tmp2) //rebelotte
+      {
+        break;
+      }
+    }
+   }
+  }
+}
