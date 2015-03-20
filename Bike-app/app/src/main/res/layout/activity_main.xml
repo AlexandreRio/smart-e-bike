@@ -1,112 +1,100 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
-    android:minWidth="90dp"
-    android:minHeight="30dp">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="1" >
 
-    <GridLayout
-        android:id="@+id/mainGrid"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:rowCount="3"
-        android:columnCount="1">
+        android:layout_height="wrap_content"
+        android:layout_weight="0.40" >
 
-        <GridLayout
-            android:id="@+id/textGrid"
+        <ImageView
+            android:id="@+id/logoHome"
+            android:src="@drawable/logo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <EditText
+            android:id="@+id/textFieldHome"
+            android:hint="Prend ton vélo et casse toi !"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.20" >
+
+        <Button
+            android:id="@+id/boutonCarte"
+            android:drawableBottom="@drawable/map"
+            android:text="carte"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="launchNavigationActivity"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_row="0"
-            android:rowCount="1"
-            android:columnCount="3">
+            android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp" />
 
-            <ImageView
-                android:src="@drawable/logo"
-                android:layout_column="0"
-                android:width="150dp" >
-            </ImageView>
-
-            <EditText
-                android:layout_column="1"
-                android:hint="Allons-y Alonso !"
-                android:width="150dp">
-            </EditText>
-
-            <ImageSwitcher>
-
-            </ImageSwitcher>
-
-        </GridLayout>
-
-        <GridLayout
-            android:id="@+id/firstButtonGrid"
+        <Button
+            android:id="@+id/boutonFavoris"
+            android:drawableBottom="@drawable/favoris"
+            android:text="favoris"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="launchFavorisActivity"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="40dp"
+            android:layout_marginEnd="40dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.20" >
+
+        <Button
+            android:id="@+id/boutonHistorique"
+            android:drawableBottom="@drawable/historique"
+            android:text="historique"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="launchHistoriqueActivity"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_row="1"
-            android:rowCount="1"
-            android:columnCount="2">
+            android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp" />
 
-            <Button
-                android:drawableBottom="@drawable/map"
-                android:height="150dp"
-                android:width="150dp"
-                android:layout_column="0"
-                android:text="Carte"
-                android:onClick="launchNavigationActivity">
-            </Button>
-
-            <Button
-                android:drawableBottom="@drawable/favoris"
-                android:height="150dp"
-                android:width="150dp"
-                android:layout_column="1"
-                android:text="Favoris"
-                android:onClick="launchFavorisActivity">
-            </Button>
-
-
-        </GridLayout>
-
-        <GridLayout
-            android:id="@+id/secondButtonGrid"
+        <Button
+            android:id="@+id/boutonReglage"
+            android:drawableBottom="@drawable/reglage"
+            android:text="réglage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="launchSettingsActivity"
+            android:layout_gravity="center_horizontal"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:rowCount="1"
-            android:columnCount="2">
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="40dp"
+            android:layout_marginEnd="40dp" />
 
-            <Button
-                android:drawableBottom="@drawable/historique"
-                android:height="150dp"
-                android:width="150dp"
-                android:layout_column="0"
-                android:text="Historique"
-                android:onClick="launchHistoriqueActivity">
-            </Button>
+    </RelativeLayout>
 
-            <Button
-                android:drawableBottom="@drawable/reglage"
-                android:height="150dp"
-                android:width="150dp"
-                android:layout_column="1"
-                android:text="Réglages"
-                android:onClick="launchSettingsActivity">
-            </Button>
-        </GridLayout>
-
-    </GridLayout>
-
-</RelativeLayout>
+</LinearLayout>
