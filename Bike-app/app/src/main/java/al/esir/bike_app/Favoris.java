@@ -6,7 +6,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import android.content.Context;
@@ -25,10 +27,14 @@ import android.widget.Toast;
 public class Favoris extends Activity implements OnClickListener {
 
     private Button btnAddFavoris;           // Bouton ajouter favoris
+    private Button btnClearFavoris;         // Bouton clear favoris
+    private Button btnRemoveFavoris;        // Bouton remove favoris
     private TableLayout tableLayoutFavoris; // Tableau des favoris
     private String file = "dataFavoris";    // Nom du fichier de sauvegarde
     private String fileContents = "";       // Contenu du fichier de sauvegarde
     private Map<String, String> map;        // Map contenant les entrées du tableau des favoris
+    private int rowCount = 1;               // Compte le nombre de ligne dans le tableau des favoris
+    private List<Integer> rowSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +44,18 @@ public class Favoris extends Activity implements OnClickListener {
         // On récupère le bouton ajouter favoris puis on applique la fonction onClick
         btnAddFavoris = (Button) findViewById(R.id.btnAddFavoris);
         btnAddFavoris.setOnClickListener(this);
+        // Même chose pour le bouton clear
+        btnClearFavoris = (Button) findViewById(R.id.btnClearFavoris);
+        btnClearFavoris.setOnClickListener(this);
+        // Même chose pour le bouton remove
+        btnRemoveFavoris = (Button) findViewById(R.id.btnRemoveFavoris);
+        btnRemoveFavoris.setOnClickListener(this);
         // On récupère le tableau des favoris
         tableLayoutFavoris = (TableLayout) findViewById(R.id.tableLayoutFavoris);
         // Initialisation de la map
         map = new HashMap<String, String>();
+        // Initialisation de la liste
+        rowSelected = new ArrayList<Integer>();
 
         // On lit le contenu du fichier et on l'enregistre
         fileContents = read();
@@ -53,9 +67,23 @@ public class Favoris extends Activity implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(this, AddFavoris.class);
-        // On lance une nouvelle activité et on récupère un résultat de cette activité
-        startActivityForResult(intent, 1);
+        // On retourne un résultat différent en fonction du bouton cliqué par l'utilisateur
+        switch(v.getId()){
+            case R.id.btnAddFavoris :
+                Intent intent = new Intent(this, AddFavoris.class);
+                // On lance une nouvelle activité et on récupère un résultat de cette activité
+                startActivityForResult(intent, 1);
+                break;
+            case R.id.btnClearFavoris :
+                clearTableFavoris();
+                initTable();
+                break;
+            case R.id.btnRemoveFavoris :
+                for(Integer ent : rowSelected){
+                    removeByIndex(ent);
+                }
+                break;
+        }
     }
 
     @Override
@@ -82,11 +110,13 @@ public class Favoris extends Activity implements OnClickListener {
         TextView tv0 = new TextView(this);
         tv0.setText("Activité");
         tv0.setTextColor(Color.WHITE);
+        tv0.setPadding(5,5,5,5);
         tbrow0.addView(tv0);
         // On crée la deuxième colonne
         TextView tv1 = new TextView(this);
         tv1.setText("Lieu");
         tv1.setTextColor(Color.WHITE);
+        tv1.setPadding(5,5,5,5);
         tbrow0.addView(tv1);
 
         // On ajoute les modifications apportées
@@ -102,16 +132,32 @@ public class Favoris extends Activity implements OnClickListener {
         // Si le lieu n'est pas déjà contenu dans la map, on l'ajoute
         if(!(map.containsKey(lieu))){
             TableRow tbrow = new TableRow(this);
+            // On indique un id pour la ligne ajoutée
+            tbrow.setId(0+rowCount);
+            // On incrémente le nombre de ligne dans le tableau
+            rowCount++;
             tbrow.setBackgroundColor(Color.parseColor("#6F9C33"));
+
+            tbrow.setClickable(true);
+            tbrow.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    rowSelected.add(v.getId());
+                    //Toast.makeText(getApplicationContext(), "Row selected "+rowSelected, Toast.LENGTH_LONG).show();
+                    v.setBackgroundColor(Color.DKGRAY);
+                }
+            });
 
             TextView t1v = new TextView(this);
             t1v.setText(activite);
             t1v.setTextColor(Color.WHITE);
+            t1v.setPadding(5,5,5,5);
             tbrow.addView(t1v);
 
             TextView t2v = new TextView(this);
             t2v.setText(lieu);
             t2v.setTextColor(Color.WHITE);
+            t2v.setPadding(5,5,5,5);
             tbrow.addView(t2v);
 
             // On ajoute l'entrée à la map
@@ -187,6 +233,10 @@ public class Favoris extends Activity implements OnClickListener {
         return ret;
     }
 
+    public void removeInFile(){
+        // TO DO
+    }
+
     /**
      * Permet de parser un string (contenu du fichier de sauvegarde attendu) et
      * d'ajouter chaque élément distinct dans le tableau des favoris
@@ -204,5 +254,25 @@ public class Favoris extends Activity implements OnClickListener {
                 addTableRow(act, lieu);
             }
         }
+    }
+
+    /**
+     * Permet de supprimer une ligne du tableau des favoris par rapport à l'index de cette dernière,
+     * obtenu après sélection par l'utilisateur de la ligne concernée
+     * @param index - L'index de la ligne à supprimer dans le tableau des favoris
+     */
+    public void removeByIndex(int index){
+        // On récupère la vue
+        View tmp = tableLayoutFavoris.findViewById(index);
+        // On supprime la vue du tableau
+        tableLayoutFavoris.removeView(tmp);
+
+        // TableRow row = (TableRow) tableLayoutFavoris.getChildAt(index);
+        // tableLayoutFavoris.removeView(row);
+    }
+
+    // Permet de vider la table des favoris entièrement
+    public void clearTableFavoris(){
+        tableLayoutFavoris.removeAllViews();
     }
 }
