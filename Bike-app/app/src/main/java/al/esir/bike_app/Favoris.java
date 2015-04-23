@@ -6,16 +6,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -34,7 +35,7 @@ public class Favoris extends Activity implements OnClickListener {
     private String fileContents = "";       // Contenu du fichier de sauvegarde
     private Map<String, String> map;        // Map contenant les entrées du tableau des favoris
     private int rowCount = 1;               // Compte le nombre de ligne dans le tableau des favoris
-    private List<Integer> rowSelected;
+    private Map<Integer, String> rowSelected; // Map des lignes sélectionnées dans le tableau des favoris
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,14 +56,36 @@ public class Favoris extends Activity implements OnClickListener {
         // Initialisation de la map
         map = new HashMap<String, String>();
         // Initialisation de la liste
-        rowSelected = new ArrayList<Integer>();
+        rowSelected = new HashMap<Integer, String>();
 
         // On lit le contenu du fichier et on l'enregistre
-        fileContents = read();
+        fileContents = readFile();
         // On initialise la structure du tableau des favoris
         initTable();
         // On analyse le contenu du fichier et on ajoute des entrées dans le tableau si besoin
         parseToAddToArray(fileContents);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_favoris, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -76,11 +99,13 @@ public class Favoris extends Activity implements OnClickListener {
                 break;
             case R.id.btnClearFavoris :
                 clearTableFavoris();
+                clearFile();
                 initTable();
                 break;
             case R.id.btnRemoveFavoris :
-                for(Integer ent : rowSelected){
+                for(Integer ent : rowSelected.keySet()){
                     removeByIndex(ent);
+                    removeInFile(rowSelected.get(ent));
                 }
                 break;
         }
@@ -138,13 +163,24 @@ public class Favoris extends Activity implements OnClickListener {
             rowCount++;
             tbrow.setBackgroundColor(Color.parseColor("#6F9C33"));
 
+            final String LieuIntoLine = lieu;   // Le lieu attendue pour la nouvelle ligne
             tbrow.setClickable(true);
             tbrow.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    rowSelected.add(v.getId());
                     //Toast.makeText(getApplicationContext(), "Row selected "+rowSelected, Toast.LENGTH_LONG).show();
-                    v.setBackgroundColor(Color.DKGRAY);
+
+                    // On récupère la couleur de la ligne
+                    ColorDrawable rowColor = (ColorDrawable) v.getBackground();
+                    int rowColorId = rowColor.getColor();
+                    // Si la ligne a déjà été sélectionnée, on applique la couleur initial
+                    if(rowColorId == Color.DKGRAY){
+                        rowSelected.remove(v.getId()); // On le retire de la map des lignes sélectionnées
+                        v.setBackgroundColor(Color.parseColor("#6F9C33"));
+                    }else{
+                        rowSelected.put(v.getId(), LieuIntoLine); // On l'ajoute à la liste des lignes sélectionnées
+                        v.setBackgroundColor(Color.DKGRAY);
+                    }
                 }
             });
 
@@ -166,7 +202,7 @@ public class Favoris extends Activity implements OnClickListener {
             // On vérifie que le lieu n'est pas déjà contenu dans le fichier
             if(!(fileContents.contains(lieu))){
                 // On écrit dans le fichier la nouvelle donnée
-                appendWrite(activite, lieu);
+                appendWriteFile(activite, lieu);
             }
 
             // On ajoute une ligne dans le tableau
@@ -175,22 +211,31 @@ public class Favoris extends Activity implements OnClickListener {
     }
 
     /**
+     * Permet d'écrire dans le fichier de sauvegarde le contenu envoyé en paramètre
+     * @param contents - Le contenu à écrire dans le fichier
+     * @throws Exception - Propage une exception en cas d'erreur sur l'écriture dans le fichier
+     */
+    public void writeFile(String contents) throws Exception{
+            //FileOutputStream out = openFileOutput(file, Context.MODE_APPEND);
+            FileOutputStream out = openFileOutput(file, Context.MODE_PRIVATE);
+            // On réécrit le fichier avec les données en paramètre
+            out.write(contents.getBytes());
+            out.close();
+    }
+
+    /**
      * On ajoute la nouvelle entrée dans le fichier de sauvegarde en écrivant dedans
      * @param activite - L'activité liée au lieu
      * @param lieu - Le lieu en question
      */
-    public void appendWrite(String activite, String lieu){
+    public void appendWriteFile(String activite, String lieu){
         try {
-            //FileOutputStream out = openFileOutput(file, Context.MODE_APPEND);
-            FileOutputStream out = openFileOutput(file, Context.MODE_PRIVATE);
-
             // On sépare chaque entrée du tableau des favoris par \\.
             String elt = activite+";"+lieu+"\\.";
             // On ajoute la nouvelle entrée au contenu du fichier
             fileContents += elt;
-            // On réécrit le fichier avec l'ensemble des données
-            out.write(fileContents.getBytes());
-            out.close();
+            // On écrit dans le fichier de sauvegarde
+           writeFile(fileContents);
 
             // On affiche un message via une popup
             Toast.makeText(getBaseContext(), "Data saved", Toast.LENGTH_SHORT).show();
@@ -205,7 +250,7 @@ public class Favoris extends Activity implements OnClickListener {
      * On lit le fichier de sauvegarde et on retourne une chaine de caractère du contenu
      * @return Une chaine de caractère représentant le contenu du fichier de sauvegarde
      */
-    public String read(){
+    public String readFile(){
         String ret = "";
         try {
             InputStream inputStream = openFileInput(file);
@@ -233,8 +278,37 @@ public class Favoris extends Activity implements OnClickListener {
         return ret;
     }
 
-    public void removeInFile(){
-        // TO DO
+    /**
+     * Permet d'effacer le contenu du fichier de sauvegarde
+     */
+    public void clearFile(){
+        try {
+            // On réinitialise le contenu du fichier, puis on écrit dedans avec un contenu vide
+            fileContents = "";
+            writeFile(fileContents);
+            Toast.makeText(getBaseContext(), "Data cleared", Toast.LENGTH_SHORT).show();
+        }
+        catch(Exception e) {
+            Toast.makeText(getBaseContext(), "Data don't cleared", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Permet de supprimer une donnée dans le fichier de sauvegarde
+     * @param content - La donnée à supprimer du contenu du fichier de sauvegarde
+     */
+    public void removeInFile(String content){
+        try{
+            parseToReplaceToFileContents(content);  // On supprime du contenu du fichier
+            writeFile(fileContents);                // On réécrit le fichier de sauvegarde
+            Toast.makeText(getBaseContext(), "Data removed", Toast.LENGTH_SHORT).show();
+        }
+        catch (Exception e){
+            Toast.makeText(getBaseContext(), "Data don't removed", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -257,16 +331,28 @@ public class Favoris extends Activity implements OnClickListener {
     }
 
     /**
+     * Permet de parser un string (contenu du fichier de sauvegarde attendu) et
+     * de remplacer la séquence de string recherché par rien (donc la supprimer du contenu du fichier)
+     * @param content - La séquence de string à supprimer du contenu du fichier
+     */
+    public void parseToReplaceToFileContents(String content){
+        for(String elt : fileContents.split("\\.")){
+            if(elt.contains(content)){
+                fileContents = fileContents.replace(elt, "");
+            }
+        }
+    }
+
+    /**
      * Permet de supprimer une ligne du tableau des favoris par rapport à l'index de cette dernière,
      * obtenu après sélection par l'utilisateur de la ligne concernée
      * @param index - L'index de la ligne à supprimer dans le tableau des favoris
      */
     public void removeByIndex(int index){
-        // On récupère la vue
-        View tmp = tableLayoutFavoris.findViewById(index);
-        // On supprime la vue du tableau
-        tableLayoutFavoris.removeView(tmp);
+        View tmp = tableLayoutFavoris.findViewById(index);  // On récupère la vue
+        tableLayoutFavoris.removeView(tmp);                 // On supprime la vue du tableau
 
+        // Alternative :
         // TableRow row = (TableRow) tableLayoutFavoris.getChildAt(index);
         // tableLayoutFavoris.removeView(row);
     }
