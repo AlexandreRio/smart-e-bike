@@ -11,7 +11,8 @@ import java.util.Map;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -19,17 +20,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Favoris extends Activity implements OnClickListener {
+public class Favoris extends ActionBarActivity implements OnClickListener, AdapterView.OnItemSelectedListener {
 
     private Button btnAddFavoris;           // Bouton ajouter favoris
     private Button btnClearFavoris;         // Bouton clear favoris
     private Button btnRemoveFavoris;        // Bouton remove favoris
+    private Spinner spinnerFavoris;         // Spinner favoris
     private TableLayout tableLayoutFavoris; // Tableau des favoris
     private String file = "dataFavoris";    // Nom du fichier de sauvegarde
     private String fileContents = "";       // Contenu du fichier de sauvegarde
@@ -51,6 +55,10 @@ public class Favoris extends Activity implements OnClickListener {
         // Même chose pour le bouton remove
         btnRemoveFavoris = (Button) findViewById(R.id.btnRemoveFavoris);
         btnRemoveFavoris.setOnClickListener(this);
+        // On récupère le spinner favoris puis on applique la fonction onItemSelected
+        spinnerFavoris = (Spinner) findViewById(R.id.spinnerFavoris);
+        spinnerFavoris.setOnItemSelectedListener(this);
+        spinnerFavoris.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
         // On récupère le tableau des favoris
         tableLayoutFavoris = (TableLayout) findViewById(R.id.tableLayoutFavoris);
         // Initialisation de la map
@@ -108,6 +116,68 @@ public class Favoris extends Activity implements OnClickListener {
                     removeInFile(rowSelected.get(ent));
                 }
                 break;
+        }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // On récupère la valeur sélectionnée dans le spinner
+        String str = (String) spinnerFavoris.getSelectedItem().toString();
+        // Si on doit afficher la totalité, alors on ne trie aucune colonne
+        if(str.equals("Tout")){showRows();}
+        // Sinon on trie les colonnes en fonction de la valeur du spinner
+        else{hideRows(str);}
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        // Do nothing
+    }
+
+    /**
+     * Permet de cacher certaines colonnes de la liste des favoris en fonction du critère de recherche
+     * @param search - Le critère de recherche basé sur les catégories des favoris
+     */
+    public void hideRows(String search){
+        // Pour toutes les colonnes du tableau, on applique le traitement
+        for(int i = 1, j = tableLayoutFavoris.getChildCount(); i < j; i++){
+            // On récupère une colonne en particulier
+            View viewRows = tableLayoutFavoris.getChildAt(i);
+
+            if(viewRows instanceof TableRow){
+                TableRow row = (TableRow) viewRows;
+                TextView firstTextView = (TextView) row.getChildAt(0);
+                String firstText = firstTextView.getText().toString();
+                // On rend la colonne invisible si sa catégorie ne fait pas partie du critère
+                if(!(firstText.equals(search))){
+                    row.setVisibility(View.GONE);
+                }
+                else{
+                    // Si une colonne est correct mais invisible, on l'affiche
+                    if(row.getVisibility() == View.GONE){
+                        row.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Permet de rendre visible toutes les colonnes du tableau
+     */
+    public void showRows(){
+        // Pour toutes les colonnes du tableau, on applique le traitement
+        for(int i = 0, j = tableLayoutFavoris.getChildCount(); i < j; i++){
+            // On récupère une colonne en particulier
+            View viewRows = tableLayoutFavoris.getChildAt(i);
+            // Si la colonne n'est pas visible
+            if(viewRows.getVisibility() == View.GONE){
+                if(viewRows instanceof TableRow){
+                    TableRow row = (TableRow) viewRows;
+                    // On rend visible la colonne
+                    row.setVisibility(View.VISIBLE);
+                }
+            }
         }
     }
 

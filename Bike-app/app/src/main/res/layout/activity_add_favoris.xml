@@ -36,15 +36,12 @@
             android:text="Activité : ">
         </TextView>
 
-        <EditText
-            android:id="@+id/editTextAddFavoris1"
+        <Spinner
+            android:id="@+id/spinnerAddFavoris"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1">
-            <requestFocus>
-            </requestFocus>
-        </EditText>
+            android:prompt="@string/spinner_prompt"
+            android:entries="@array/contenus_add_favoris"/>
     </LinearLayout>
 
     <LinearLayout
@@ -60,7 +57,7 @@
         </TextView>
 
         <EditText
-            android:id="@+id/editTextAddFavoris2"
+            android:id="@+id/editTextAddFavoris"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"

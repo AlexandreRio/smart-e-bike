@@ -29,6 +29,7 @@
         android:orientation="horizontal">
 
         <Spinner
+            android:id="@+id/spinnerFavoris"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:prompt="@string/spinner_prompt"
@@ -43,7 +44,7 @@
                 android:id="@+id/btnAddFavoris"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nouveau"
+                android:text="Ajouter"
                 android:textSize="6pt"
                 android:gravity="center"
                 />
@@ -82,7 +83,7 @@
             android:id="@+id/btnClearFavoris"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Clear"
+            android:text="Vider"
             android:textSize="6pt"
             android:gravity="center"
             />
@@ -91,7 +92,7 @@
             android:id="@+id/btnRemoveFavoris"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Remove"
+            android:text="Supprimer"
             android:textSize="6pt"
             android:gravity="center"
             />

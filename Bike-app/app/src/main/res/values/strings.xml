@@ -35,16 +35,26 @@
     <string name="data6_row2_favoris">3 allée de maurepas</string>
 
     <string-array name="contenus_favoris">
+        <item>"Tout"</item>
         <item>"Maison"</item>
         <item>"Travail"</item>
         <item>"Commerces"</item>
         <item>"Autres"</item>
     </string-array>
+
+    <string-array name="contenus_add_favoris">
+        <item>"Autres"</item>
+        <item>"Maison"</item>
+        <item>"Travail"</item>
+        <item>"Commerces"</item>
+    </string-array>
+
     <string-array name="contenus_historique">
         <item>"Aujourd'hui"</item>
         <item>"Cette semaine"</item>
         <item>"Ce mois-ci"</item>
     </string-array>
+
     <string-array name="contenus_itineraire">
         <item>"liste favoris"</item>
     </string-array>
