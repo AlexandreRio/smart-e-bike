@@ -25,15 +25,24 @@ public class NavigationActivity extends Activity implements OnMapReadyCallback, 
     private LocationManager locationManager;
     private String provider;
     private String destinationFavoris;      // Destination reçue par la vue Favoris
+    private String destinationHistorique;   // Destination reçue par la vue Historique
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
 
-        // La destination reçue par la vue Favoris lorsqu'on valide une destination
+        // On récupère l'intent qui nous a envoyé une donnée
         Intent intent = getIntent();
+        // La destination reçue par la vue Favoris lorsqu'on valide une destination
         destinationFavoris = intent.getStringExtra(Favoris.DESTINATION_FAVORIS);
+        // La destination reçue par la vue Historique lorsqu'on valide une destination
+        destinationHistorique = intent.getStringExtra(Historique.DESTINATION_HISTORIQUE);
+        /* !!! Il y a trois cas de figure possible : !!!
+        * 1. Seule la destination des favoris est renseignée
+        * 2. Seule la destination des historiques est renseignée
+        * 3. Aucune des deux destinations n'est renseignée (elles sont toutes les deux à null)
+        * */
 
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
