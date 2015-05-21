@@ -7,7 +7,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -30,6 +33,7 @@ import android.widget.Toast;
 
 public class Favoris extends ActionBarActivity implements OnClickListener, AdapterView.OnItemSelectedListener {
 
+    private Button btnConfirmFavoris;       // Bouton valider favoris
     private Button btnAddFavoris;           // Bouton ajouter favoris
     private Button btnClearFavoris;         // Bouton clear favoris
     private Button btnRemoveFavoris;        // Bouton remove favoris
@@ -40,6 +44,8 @@ public class Favoris extends ActionBarActivity implements OnClickListener, Adapt
     private Map<String, String> map;        // Map contenant les entrées du tableau des favoris
     private int rowCount = 1;               // Compte le nombre de ligne dans le tableau des favoris
     private Map<Integer, String> rowSelected; // Map des lignes sélectionnées dans le tableau des favoris
+
+    public final static String DESTINATION_FAVORIS = "al.esir.bike_app.favoris.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +61,9 @@ public class Favoris extends ActionBarActivity implements OnClickListener, Adapt
         // Même chose pour le bouton remove
         btnRemoveFavoris = (Button) findViewById(R.id.btnRemoveFavoris);
         btnRemoveFavoris.setOnClickListener(this);
+        // Même chose pour le bouton valider
+        btnConfirmFavoris = (Button) findViewById(R.id.btnConfirmFavoris);
+        btnConfirmFavoris.setOnClickListener(this);
         // On récupère le spinner favoris puis on applique la fonction onItemSelected
         spinnerFavoris = (Spinner) findViewById(R.id.spinnerFavoris);
         spinnerFavoris.setOnItemSelectedListener(this);
@@ -64,7 +73,7 @@ public class Favoris extends ActionBarActivity implements OnClickListener, Adapt
         // Initialisation de la map
         map = new HashMap<String, String>();
         // Initialisation de la liste
-        rowSelected = new HashMap<Integer, String>();
+        rowSelected = new LinkedHashMap<Integer, String>();
 
         // On lit le contenu du fichier et on l'enregistre
         fileContents = readFile();
@@ -116,7 +125,36 @@ public class Favoris extends ActionBarActivity implements OnClickListener, Adapt
                     removeInFile(rowSelected.get(ent));
                 }
                 break;
+            case R.id.btnConfirmFavoris :
+                Intent intentNavigation = new Intent(this, NavigationActivity.class);
+                if(rowSelected.size() > 0){
+                    String destination = getEntry(0).getValue();
+                    intentNavigation.putExtra(DESTINATION_FAVORIS, destination);
+                    startActivity(intentNavigation);
+                }
+                else{
+                    Toast.makeText(getBaseContext(), "Choose a destination", Toast.LENGTH_SHORT).show();
+                }
+                break;
         }
+    }
+
+    /**
+     * Permet de récupérer une entrée à la position absolu de la map rowSelected
+     * @param id
+     * @return
+     */
+    private Entry<Integer, String> getEntry(int id){
+        Iterator<Entry<Integer, String>> iterator = rowSelected.entrySet().iterator();
+        int n = 0;
+        while(iterator.hasNext()){
+            Entry entry = iterator.next();
+            if(n == id){
+                return entry;
+            }
+            n ++;
+        }
+        return null;
     }
 
     @Override
