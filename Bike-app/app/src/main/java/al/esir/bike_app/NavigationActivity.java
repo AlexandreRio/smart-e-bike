@@ -2,11 +2,13 @@ package al.esir.bike_app;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -22,11 +24,16 @@ public class NavigationActivity extends Activity implements OnMapReadyCallback, 
 
     private LocationManager locationManager;
     private String provider;
+    private String destinationFavoris;      // Destination reçue par la vue Favoris
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
+
+        // La destination reçue par la vue Favoris lorsqu'on valide une destination
+        Intent intent = getIntent();
+        destinationFavoris = intent.getStringExtra(Favoris.DESTINATION_FAVORIS);
 
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
