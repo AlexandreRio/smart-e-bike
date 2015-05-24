@@ -26,6 +26,7 @@ public class NavigationActivity extends Activity implements OnMapReadyCallback, 
     private String provider;
     private String destinationFavoris;      // Destination reçue par la vue Favoris
     private String destinationHistorique;   // Destination reçue par la vue Historique
+    private String destinationMain;         // Destination reçue par la vue Navigation
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +39,13 @@ public class NavigationActivity extends Activity implements OnMapReadyCallback, 
         destinationFavoris = intent.getStringExtra(Favoris.DESTINATION_FAVORIS);
         // La destination reçue par la vue Historique lorsqu'on valide une destination
         destinationHistorique = intent.getStringExtra(Historique.DESTINATION_HISTORIQUE);
-        /* !!! Il y a trois cas de figure possible : !!!
+        // La destination reçue par la vue Main lorsqu'on valide une destination
+        destinationMain = intent.getStringExtra(MainActivity.DESTINATION_MAIN);
+        /* !!! Il y a quatre cas de figure possible : !!!
         * 1. Seule la destination des favoris est renseignée
         * 2. Seule la destination des historiques est renseignée
-        * 3. Aucune des deux destinations n'est renseignée (elles sont toutes les deux à null)
+        * 3. Seule la destination du Main est renseignée
+        * 4. Aucune des trois destinations n'est renseignée (elles sont toutes les trois à null)
         * */
 
         MapFragment mapFragment = (MapFragment) getFragmentManager()
