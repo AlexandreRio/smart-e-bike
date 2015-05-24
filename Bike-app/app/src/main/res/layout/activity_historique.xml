@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="al.esir.bike_app.favoris"
+    tools:context="al.esir.bike_app.historique"
     android:orientation="vertical">
 
     <LinearLayout
@@ -28,202 +28,68 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-
         <Spinner
+            android:id="@+id/spinnerHistorique"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:prompt="@string/spinner_prompt"
             android:entries="@array/contenus_historique"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:weightSum="1">
-
-            <SearchView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/searchView"
-                android:queryHint="Rechercher"
-             />
-
-        </LinearLayout>
     </LinearLayout>
 
-    <TableLayout
+    <ScrollView
+        android:id="@+id/scrollViewHistorique"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true" >
+
+        <LinearLayout
+            android:id="@+id/RelativeLayoutHistorique"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TableLayout
+                android:id="@+id/tableLayoutHistorique"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:stretchColumns="*">
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:stretchColumns="*">
+        android:gravity="center">
 
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:background="@color/green" >
+        <Button
+            android:id="@+id/btnClearHistorique"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vider"
+            android:textSize="6pt"
+            android:gravity="center"
+            />
 
-            <TextView
-                android:paddingBottom="10dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:paddingTop="10dp"
-                android:text="@string/title_row1_historique"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
+        <Button
+            android:id="@+id/btnRemoveHistorique"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Supprimer"
+            android:textSize="6pt"
+            android:gravity="center"
+            />
 
-            <LinearLayout
-                android:layout_width="1dp"
-                android:layout_height="match_parent" >
-
-                <View style="@style/Divider_historique" />
-            </LinearLayout>
-
-            <TextView
-                android:paddingBottom="10dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:paddingTop="10dp"
-                android:text="@string/title_row2_historique"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <LinearLayout
-                android:layout_width="1dp"
-                android:layout_height="match_parent" >
-
-                <View style="@style/Divider_historique" />
-            </LinearLayout>
-
-            <TextView
-                android:paddingBottom="10dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:paddingTop="10dp"
-                android:text="@string/title_row3_historique"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#6F9C33" >
-
-            <TextView
-                android:padding="5dp"
-                android:text="@string/data1_row1_historique"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
-
-            <LinearLayout
-                android:layout_width="1dp"
-                android:layout_height="match_parent" >
-
-                <View style="@style/Divider_historique" />
-            </LinearLayout>
-
-            <TextView
-                android:padding="5dp"
-                android:text="@string/data2_row2_historique"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
-
-            <LinearLayout
-                android:layout_width="1dp"
-                android:layout_height="match_parent" >
-
-                <View style="@style/Divider_historique" />
-            </LinearLayout>
-
-            <TextView
-                android:padding="5dp"
-                android:text="@string/data3_row3_historique"
-                android:textColor="@color/white"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:textSize="16sp"/>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#6F9C33" >
-
-            <TextView
-                android:padding="5dp"
-                android:text="@string/data4_row1_historique"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
-
-            <LinearLayout
-                android:layout_width="1dp"
-                android:layout_height="match_parent" >
-
-                <View style="@style/Divider_historique" />
-            </LinearLayout>
-
-            <TextView
-                android:padding="5dp"
-                android:text="@string/data5_row2_historique"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
-
-            <LinearLayout
-                android:layout_width="1dp"
-                android:layout_height="match_parent" >
-
-                <View style="@style/Divider_historique" />
-            </LinearLayout>
-
-            <TextView
-                android:padding="5dp"
-                android:text="@string/data6_row3_historique"
-                android:textColor="@color/white"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:textSize="16sp"/>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#6F9C33" >
-
-            <TextView
-                android:padding="5dp"
-                android:text="@string/data7_row1_historique"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
-
-            <LinearLayout
-                android:layout_width="1dp"
-                android:layout_height="match_parent" >
-
-                <View style="@style/Divider_historique" />
-            </LinearLayout>
-
-            <TextView
-                android:padding="5dp"
-                android:text="@string/data8_row2_historique"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
-
-            <LinearLayout
-                android:layout_width="1dp"
-                android:layout_height="match_parent" >
-
-                <View style="@style/Divider_historique" />
-            </LinearLayout>
-
-            <TextView
-                android:padding="5dp"
-                android:text="@string/data9_row3_historique"
-                android:textColor="@color/white"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:textSize="16sp"/>
-        </TableRow>
-    </TableLayout>
+        <Button
+            android:id="@+id/btnConfirmHistorique"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valider"
+            android:textSize="6pt"
+            android:gravity="center"
+            />
+    </LinearLayout>
 
 </LinearLayout>
