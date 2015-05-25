@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Vélésir</string>
+    <string name="app_name">Bike-app</string>
     <string name="version">0.1</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -35,16 +35,28 @@
     <string name="data6_row2_favoris">3 allée de maurepas</string>
 
     <string-array name="contenus_favoris">
+        <item>"Tout"</item>
         <item>"Maison"</item>
         <item>"Travail"</item>
         <item>"Commerces"</item>
         <item>"Autres"</item>
     </string-array>
-    <string-array name="contenus_historique">
-        <item>"Aujourd'hui"</item>
-        <item>"Cette semaine"</item>
-        <item>"Ce mois-ci"</item>
+
+    <string-array name="contenus_add_favoris">
+        <item>"Autres"</item>
+        <item>"Maison"</item>
+        <item>"Travail"</item>
+        <item>"Commerces"</item>
     </string-array>
+
+    <string-array name="contenus_historique">
+        <item>"Tout"</item>
+        <item>"Ce mois-ci"</item>
+        <item>"7 derniers jours"</item>
+        <item>"3 derniers jours"</item>
+        <item>"Aujourd'hui"</item>
+    </string-array>
+
     <string-array name="contenus_itineraire">
         <item>"liste favoris"</item>
     </string-array>
