@@ -25,6 +25,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -135,9 +138,16 @@ public class Historique extends ActionBarActivity implements OnClickListener,  A
         // On récupère la valeur sélectionnée dans le spinner
         String str = (String) spinnerHistorique.getSelectedItem().toString();
         // Si on doit afficher la totalité, alors on ne trie aucune colonne
-        if(str.equals("Ce mois-ci")){showRows();}
-        // Sinon on trie les colonnes en fonction de la valeur du spinner
-        else{hideRows(str);}
+        if(str.equals("Ce mois-ci"))
+            showRows(str);
+        else if(str.equals("7 derniers jours"))
+            showRows(str);
+        else if(str.equals("3 derniers jours"))
+            showRows(str);
+        else if(str.equals("Aujourd'hui"))
+            showRows(str);
+        else
+            showRows("Tout");
     }
 
     @Override
@@ -184,29 +194,56 @@ public class Historique extends ActionBarActivity implements OnClickListener,  A
                 else{
                     if(row.getVisibility() == View.GONE){
                         row.setVisibility(View.VISIBLE);
+		    }
+		}
+	    }
+	}
+    }
+
+     /**
+     * Permet de rendre visible toutes les lignes du tableau
+     */
+    public void showRows(String s){
+
+        Calendar now = getCalendar(MainActivity.getFormattedDate());
+        // Pour toutes les lignes du tableau, on applique le traitement
+        for(int i = 0, j = tableLayoutHistorique.getChildCount(); i < j; i++){
+            if(tableLayoutHistorique.getChildAt(i) instanceof TableRow){
+                TableRow row = (TableRow)tableLayoutHistorique.getChildAt(i);
+                if (row.getChildAt(0) instanceof TextView) {
+                    String date = ((TextView) row.getChildAt(0)).getText().toString();
+
+                    if (s.equals("Tout") || date.equals("Dernière fois")) {
+                        row.setVisibility(View.VISIBLE);
+                    } else {
+                        Calendar c = getCalendar(date);
+
+                        if (s.equals("Aujourd'hui") && c.getTimeInMillis() > (now.getTimeInMillis() - 86400000))
+                            row.setVisibility(View.VISIBLE);
+                        else if (s.equals("3 derniers jours") && c.getTimeInMillis() > (now.getTimeInMillis() - 259200000))
+                            row.setVisibility(View.VISIBLE);
+                        else if (s.equals("7 derniers jours") && c.getTimeInMillis() > (now.getTimeInMillis() - 604800000))
+                            row.setVisibility(View.VISIBLE);
+                        else if (s.equals("Ce mois-ci") && (long)c.getTimeInMillis() > ((long)now.getTimeInMillis() - 2628000000L))
+                            row.setVisibility(View.VISIBLE);
+                        else
+                            row.setVisibility(View.GONE);
                     }
                 }
             }
         }
     }
 
-    /**
-     * Permet de rendre visible toutes les colonnes du tableau
-     */
-    public void showRows(){
-        // Pour toutes les colonnes du tableau, on applique le traitement
-        for(int i = 0, j = tableLayoutHistorique.getChildCount(); i < j; i++){
-            // On récupère une colonne en particulier
-            View viewRows = tableLayoutHistorique.getChildAt(i);
-            // Si la colonne n'est pas visible
-            if(viewRows.getVisibility() == View.GONE){
-                if(viewRows instanceof TableRow){
-                    TableRow row = (TableRow) viewRows;
-                    // On rend visible la colonne
-                    row.setVisibility(View.VISIBLE);
-                }
-            }
-        }
+
+    private Calendar getCalendar (String datetime) {
+        String date = datetime.split(" ")[0];
+        String time = datetime.split(" ")[1];
+        int day = Integer.parseInt(date.split("/")[0]);
+        int month = Integer.parseInt(date.split("/")[1]);
+        int year = Integer.parseInt(date.split("/")[2]);
+        int hour = Integer.parseInt(time.split(":")[0]);
+        int minute = Integer.parseInt(time.split(":")[1]);
+        return new GregorianCalendar(year+2000, month, day, hour, minute);
     }
 
     /**

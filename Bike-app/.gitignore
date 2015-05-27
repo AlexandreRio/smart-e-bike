@@ -1,8 +1,11 @@
 .gradle
 .idea
-/Bike-app.iml
-/local.properties
+Bike-app.iml
+app/app.iml
+local.properties
 /.idea/workspace.xml
 /.idea/libraries
 .DS_Store
 /build
+local.properties
+/app/build.gradle
