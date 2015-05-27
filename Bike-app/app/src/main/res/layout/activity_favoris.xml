@@ -29,6 +29,7 @@
         android:orientation="horizontal">
 
         <Spinner
+            android:id="@+id/spinnerFavoris"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:prompt="@string/spinner_prompt"
@@ -43,7 +44,7 @@
                 android:id="@+id/btnAddFavoris"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nouveau"
+                android:text="Ajouter"
                 android:textSize="6pt"
                 android:gravity="center"
                 />
@@ -71,5 +72,39 @@
             </TableLayout>
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnClearFavoris"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vider"
+            android:textSize="6pt"
+            android:gravity="center"
+            />
+
+        <Button
+            android:id="@+id/btnRemoveFavoris"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Supprimer"
+            android:textSize="6pt"
+            android:gravity="center"
+            />
+
+        <Button
+            android:id="@+id/btnConfirmFavoris"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valider"
+            android:textSize="6pt"
+            android:gravity="center"
+            />
+    </LinearLayout>
 
 </LinearLayout>

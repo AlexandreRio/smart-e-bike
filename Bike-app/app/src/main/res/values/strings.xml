@@ -50,6 +50,8 @@
     </string-array>
 
     <string-array name="contenus_historique">
+        <item>"Ce mois-ci"</item>
+        <item>"Cette semaine"</item>
         <item>"Tout"</item>
         <item>"Ce mois-ci"</item>
         <item>"7 derniers jours"</item>

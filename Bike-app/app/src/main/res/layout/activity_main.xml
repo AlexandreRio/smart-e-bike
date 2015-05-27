@@ -9,7 +9,8 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.40" >
+        android:layout_weight="0.40"
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/logoHome"
@@ -21,10 +22,19 @@
 
         <EditText
             android:id="@+id/textFieldHome"
-            android:hint="Prend ton vélo et casse toi !"
-            android:layout_width="match_parent"
+            android:hint="Où voulez vous aller ?"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp" />
+
+        <Button
+            android:id="@+id/btnOKMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OK"
+            android:textSize="6pt"
+            android:gravity="center"
+            />
 
     </LinearLayout>
 

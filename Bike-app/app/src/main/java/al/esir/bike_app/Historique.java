@@ -25,6 +25,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -173,6 +174,33 @@ public class Historique extends ActionBarActivity implements OnClickListener,  A
     }
 
     /**
+     * Permet de cacher certaines colonnes de la liste des historiques en fonction du critère de recherche
+     * @param search - Le critère de recherche basé sur les dates des dernières fois des historiques
+     */
+    public void hideRows(String search){
+        // Pour toutes les colonnes du tableau, on applique le traitement
+        for(int i = 1, j = tableLayoutHistorique.getChildCount(); i < j; i++){
+            // On récupère une colonne en particulier
+            View viewRows = tableLayoutHistorique.getChildAt(i);
+
+            if(viewRows instanceof TableRow){
+                TableRow row = (TableRow) viewRows;
+                TextView firstTextView = (TextView) row.getChildAt(0);
+                String firstText = firstTextView.getText().toString();
+
+                if(!(firstText.equals(search))){
+                    row.setVisibility(View.GONE);
+                }
+                else{
+                    if(row.getVisibility() == View.GONE){
+                        row.setVisibility(View.VISIBLE);
+		    }
+		}
+	    }
+	}
+    }
+
+     /**
      * Permet de rendre visible toutes les lignes du tableau
      */
     public void showRows(String s){
@@ -206,6 +234,7 @@ public class Historique extends ActionBarActivity implements OnClickListener,  A
         }
     }
 
+
     private Calendar getCalendar (String datetime) {
         String date = datetime.split(" ")[0];
         String time = datetime.split(" ")[1];
@@ -216,6 +245,7 @@ public class Historique extends ActionBarActivity implements OnClickListener,  A
         int minute = Integer.parseInt(time.split(":")[1]);
         return new GregorianCalendar(year+2000, month, day, hour, minute);
     }
+
     /**
      * Permet d'initialiser la structure du tableau des historiques
      */

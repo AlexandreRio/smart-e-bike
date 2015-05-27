@@ -2,11 +2,13 @@ package al.esir.bike_app;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -22,11 +24,29 @@ public class NavigationActivity extends Activity implements OnMapReadyCallback, 
 
     private LocationManager locationManager;
     private String provider;
+    private String destinationFavoris;      // Destination reçue par la vue Favoris
+    private String destinationHistorique;   // Destination reçue par la vue Historique
+    private String destinationMain;         // Destination reçue par la vue Navigation
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
+
+        // On récupère l'intent qui nous a envoyé une donnée
+        Intent intent = getIntent();
+        // La destination reçue par la vue Favoris lorsqu'on valide une destination
+        destinationFavoris = intent.getStringExtra(Favoris.DESTINATION_FAVORIS);
+        // La destination reçue par la vue Historique lorsqu'on valide une destination
+        destinationHistorique = intent.getStringExtra(Historique.DESTINATION_HISTORIQUE);
+        // La destination reçue par la vue Main lorsqu'on valide une destination
+        destinationMain = intent.getStringExtra(MainActivity.DESTINATION_MAIN);
+        /* !!! Il y a quatre cas de figure possible : !!!
+        * 1. Seule la destination des favoris est renseignée
+        * 2. Seule la destination des historiques est renseignée
+        * 3. Seule la destination du Main est renseignée
+        * 4. Aucune des trois destinations n'est renseignée (elles sont toutes les trois à null)
+        * */
 
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
