@@ -25,6 +25,11 @@ import java.util.Map;
 public class MainActivity extends ActionBarActivity implements OnClickListener {
 // main
 
+    private PhoneStateListener myListener;
+    private TelephonyManager telephony;
+
+    public static final String LOGS = "bike_app";
+
     private EditText editTextMain;
     private Button btnOkMain;
     private String file = "dataHistorique";     // Nom du fichier de sauvegarde
@@ -42,6 +47,10 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 
         // On lit le contenu du fichier et on l'enregistre
         fileContents = readFile();
+
+        telephony = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+        myListener = new CallRejectionListener(telephony);
+        telephony.listen(myListener, PhoneStateListener.LISTEN_CALL_STATE);
     }
 
     @Override
