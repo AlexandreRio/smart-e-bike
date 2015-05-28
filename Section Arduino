@@ -1,0 +1,47 @@
+#include <SPI.h>
+#include "PN532_SPI.h"
+#include "PN532.h"
+#include "NfcAdapter.h"
+
+int ledPin = 10;      // LED connected to digital pin 9
+int analogPin = 3;   // potentiometer connected to analog pin 3
+int val = 0;         // variable to store the read value
+
+String const myUID1 = "04 4F 39 5A 9D 31 80"; // replace this UID with your NFC tag's UID
+String const myUID2 = "04 22 C0 82 CF 2B 80"; // replace this UID with your NFC tag's UID
+PN532_SPI interface(SPI, 10); // create a SPI interface for the shield with the SPI CS terminal at digital pin 10
+NfcAdapter nfc = NfcAdapter(interface); // create an NFC adapter object
+ 
+void setup(void) {
+    pinMode(ledPin, OUTPUT);   // sets the pin as output
+    Serial.begin(115200); // start serial comm
+    Serial.println("NDEF Reader"); // show the beginning
+    nfc.begin(); // begin NFC comm
+}
+
+void loop(void) {
+  
+    Serial.println("Scanning...");
+    if (nfc.tagPresent()) // check if an NFC tag is present on the antenna area
+    {
+        NfcTag tag = nfc.read(); // read the NFC tag
+        String scannedUID = tag.getUidString(); // get the NFC tag's UID
+        
+        if( myUID1.compareTo(scannedUID) == 0) // compare the RU NFC tag's UID with the correct tag's UID (a match exists when compareTo returns 0)
+        {
+          Serial.println("Envoi à 20%"); //send value of wheel to 20%
+          analogWrite(ledPin, 80);
+          
+        }else if (myUID2.compareTo(scannedUID) == 0){ // compare the AVM NFC tag's UID with the correct tag's UID (a match exists when compareTo returns 0)
+          Serial.println("envoi à 35%"); //send value of wheel to 35%
+          analogWrite(ledPin, 145);
+        }
+        
+        else{
+          Serial.println("Mauvaise clef"); //wrong key buddy
+          analogWrite(ledPin, 0);
+        Serial.println(scannedUID);  //try again, or keep going, whatever
+      }      
+    }
+    delay(500); //wait
+}
